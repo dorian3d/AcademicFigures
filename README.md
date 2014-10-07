@@ -90,6 +90,9 @@ title('Academic Figure');
 This produces this plot:
 ![aplot](http://dorian3d.github.com/other/images/aplot.png)
 
+In comparison, this is the output of the same code using the `figure` command:
+![plot](http://dorian3d.github.com/other/images/plot.png)
+
 #### Example 2
 You can also create bar plots:
 
@@ -107,6 +110,9 @@ title('Academic Bar Figure');
 
 This produces:
 ![abar](http://dorian3d.github.com/other/images/abar.png)
+
+In comparison, this is the output of the same code using the `figure` command:
+![bar](http://dorian3d.github.com/other/images/bar.png)
 
 #### Example 3
 This example shows how to customize a figure:
