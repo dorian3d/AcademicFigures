@@ -15,14 +15,58 @@ margin.
 5. Color and gray colormaps that keep the high contrast even when printed as grayscale.
 6. Chart box and grid enabled by default.
 7. The dimensions and size ratio can be fixed.
-8. It fits nicely with `plot` and `bar` commands.
+8. It nicely fits `plot` and `bar` commands.
 
-## Usage
+### Usage
 
 Its usage is very simple. Just type `afigure` before any of your `plot` or `bar` commands.
 You can check `AcademicFigures_Example` to show a complete example.
 
-Short examples:
+You can also call `aplot` or `abar` directly without calling `afigure` first. These 
+have the same input and output parameters as `plot` and `bar`.
+
+### Customization
+
+The configuration of the Academic Figures is given by a structure returned by `aconfig`:
+
+```matlab
+config = aconfig;
+````
+
+This defines these variables:
+* `BackgroundColor` (default: [1 1 1]): figure background color.
+* `FontSize` (default: 20): title, axes, labels and text font size.
+* `LineWidth` (default: 2): width of plot lines.
+* `DrawBox` (defaut: true): show a full box around around the axes.
+* `Grid` (default: true): show grid.
+* `RemoveMargins` (default: true): remove blank space around axes.
+* `Width` (default: []): figure width in pixels. Ignored if empty.
+* `Height` (default: []): figure height in pixels. Ignored if empty.
+* `SizeRatio` (default: 4/3): width by height ratio of window. Ignored if
+    empty of it both Width and Height are given.
+* `Colormap` (default: 'cmr'): colormap. It can be a Nx3 matrix with 
+    values in [0, 1] representing N RGB colors, or the name of a 
+    predefined map (these maps keep high contrast when converted into
+    grayscale): 'thermal', 'cmr', 'dusk', 'hsv2', 'gray'.
+* `LineStyles` (default: '-|-.|--'): styles of plot lines.
+
+You can change any variable and create an `afigure` with the new configuration:
+```matlab
+config = aconfig;
+config.BackgroundColor = [1 0 0]; % red background
+config.Colormap = 'dusk';
+afigure(config);
+```
+
+For convenience, you can modify the variables inline:
+```matlab
+afigure(aconfig('BackgroundColor', [1 0 0], 'Colormap', 'dusk'));
+```
+
+### Examples
+
+You can check `AcademicFigures_Example` to show a complete examples. 
+Some short examples are given in the following.
 
 #### Example 1
 ```matlab
@@ -65,50 +109,20 @@ This produces:
 ![abar](http://dorian3d.github.com/other/images/abar.png)
 
 #### Example 3
-For convenience, you can also call `aplot` or `abar` directly:
+This example shows how to customize a figure:
 
 ```matlab
-aplot(r1, p1);
-aplot(r2, p2);
+afigure(aconfig('Colormap', 'dusk', 'LineWidth', 5, ...
+    'LineStyles', ':|--'));
+    
+data = repmat(12:-1:1, 5, 1);
+plot(data);
+xlabel('X Axis');
+ylabel('Y Axis');
+legend('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', ...
+  'Location', 'EastOutside');
+title('Academic Figure with custom parameters');
 ```
 
-```matlab
-abar(data);
-```
-
-#### Example 4
-The configuration of the Academic Figure is given by a config structure returned by `aconfig`:
-
-```matlab
-config = aconfig;
-````
-
-This defines these variables:
-* BackgroundColor (default: [1 1 1]): figure background color.
-* FontSize (default: 20): title, axes, labels and text font size.
-* LineWidth (default: 2): width of plot lines.
-* DrawBox (defaut: true): show a full box around around the axes.
-* Grid (default: true): show grid.
-* RemoveMargins (default: true): remove blank space around axes.
-* Width (default: []): figure width in pixels. Ignored if empty.
-* Height (default: []): figure height in pixels. Ignored if empty.
-* SizeRatio (default: 4/3): width by height ratio of window. Ignored if
-    empty of it both Width and Height are given.
-* Colormap (default: 'cmr'): colormap. It can be a Nx3 matrix with 
-    values in [0, 1] representing N RGB colors, or the name of a 
-    predefined map (these maps keep high contrast when converted into
-    grayscale): 'thermal', 'cmr', 'dusk', 'hsv2', 'gray'.
-*  LineStyles (default: '-|-.|--'): styles of plot lines.
-
-You can change any variable and create an `afigure` with the new configuration:
-```matlab
-config = aconfig;
-config.BackgroundColor = [1 0 0]; % red background
-config.Colormap = 'dusk';
-afigure(config);
-```
-
-For convenience, you can modify the variables inline:
-```matlab
-afigure(aconfig('BackgroundColor', [1 0 0], 'Colormap', 'dusk'));
-```
+This produces:
+![aplot](http://dorian3d.github.com/other/images/aplotcustom.png)
