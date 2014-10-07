@@ -6,6 +6,7 @@ Matlab scripts to create readable, color and high contrast figures for publicati
 Academic Figures provides the command `afigure` that behaves as `figure` but creates
 a readable figure to embed it in a text document. Academic Figures produces figures
 with these properties by default (they can be customized):
+
 1. White background instead of gray or operating system defined.
 2. Large font size for legend, axis labels, ticks and title.
 3. Wider lines when plotting.
@@ -24,7 +25,7 @@ You can check `AcademicFigures_Example` to show a complete example.
 Short examples:
 
 #### Example 1
-```
+```matlab
 afigure;
 
 % some data
@@ -43,12 +44,12 @@ title('Academic Figure');
 ```
 
 This produces this plot:
-![aplot](dorian3d.github.com/other/images/aplot.png)
+![aplot](http://dorian3d.github.com/other/images/aplot.png)
 
 #### Example 2
 You can also create bar plots:
 
-```
+```matlab
 afigure;
 
 data = [10 20 30; 5 10 15];
@@ -61,24 +62,24 @@ title('Academic Bar Figure');
 ```
 
 This produces:
-![abar](dorian3d.github.com/other/images/abar.png)
+![abar](http://dorian3d.github.com/other/images/abar.png)
 
 #### Example 3
 For convenience, you can also call `aplot` or `abar` directly:
 
-```
+```matlab
 aplot(r1, p1);
 aplot(r2, p2);
 ```
 
-```
+```matlab
 abar(data);
 ```
 
 #### Example 4
 The configuration of the Academic Figure is given by a config structure returned by `aconfig`:
 
-```
+```matlab
 config = aconfig;
 ````
 
@@ -100,7 +101,7 @@ This defines these variables:
 *  LineStyles (default: '-|-.|--'): styles of plot lines.
 
 You can change any variable and create an `afigure` with the new configuration:
-```
+```matlab
 config = aconfig;
 config.BackgroundColor = [1 0 0]; % red background
 config.Colormap = 'dusk';
@@ -108,6 +109,6 @@ afigure(config);
 ```
 
 For convenience, you can modify the variables inline:
-```
+```matlab
 afigure(aconfig('BackgroundColor', [1 0 0], 'Colormap', 'dusk'));
 ```
