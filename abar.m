@@ -6,13 +6,8 @@
 %
 %    See also afigure, aconfig, aplot
 function handles = abar(varargin)
-  if isempty(findobj('type', 'figure'))
-    afigure;
-  end
-  
+  afigure(gcf);
   hnds = bar(varargin{:});
-  
   if nargout > 0
     handles = hnds;
   end
-  
